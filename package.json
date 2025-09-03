@@ -1,6 +1,6 @@
 {
   "name": "faceregapp",
-  "homepage": "https://myusername.github.io/faceregapp",
+  "homepage": "https://rusheedroberts.github.io/faceregapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,9 +9,12 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "gh-pages": "^6.3.0",
+    "particles-bg": "^2.5.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-parallax-tilt": "^1.7.307",
     "react-scripts": "^5.0.1",
+    "tachyons": "^4.12.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
