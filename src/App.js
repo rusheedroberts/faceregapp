@@ -80,14 +80,18 @@ render () {
         // params ={particlesOptions} 
         type="cobweb" 
         bg={true} />
-      <Navigation />     
-      <Logo />
+      <Navigation /> 
+      { this.state.route === 'signin' 
+        ? <Signin />  
+        : <div>
+         <Logo />
       <Rank />
       <ImageLinkForm 
         onInputChange={this.onInputChange} 
         onButtonSubmit={this.onButtonSubmit}  />      
       <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
-
+    </div>
+}
       : (
              route === 'signin'
              ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
