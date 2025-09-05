@@ -2,30 +2,32 @@ import React, { Component} from 'react';
 import Navigation from './components/Navigation/Navigation';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 import ParticlesBg from 'particles-bg';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
-import Clarifai from 'clarifai';
+// import Clarifai from 'clarifai';
 import './App.css';
 
 
-const app = new Clarifai.App({
-  apiKey: '6ef5676d3f414b2094af6d7791bfc9e3'
-});
+// const app = new Clarifai.App({
+//   apiKey: '6ef5676d3f414b2094af6d7791bfc9e3'
+// });
 
 
 
-const particlesOptions = {
-  particles: {
-    number: {
-      value :50,
-      density: {
-        enable:true,
-        value_area:800
-      }
-    }
-  }
-}
+// const particlesOptions = {
+//   particles: {
+//     number: {
+//       value :50,
+//       density: {
+//         enable:true,
+//         value_area:800
+//       }
+//     }
+//   }
+// }
 
 class App extends Component {
   constructor() {
@@ -34,6 +36,7 @@ class App extends Component {
       input:'',
       imageUrl: '',
        box: {},
+       route: 'signin',
     }
   }
 
@@ -60,12 +63,12 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState ({imageUrl: this.state.input});
-    app.models
-      .predict(
-        Clarifai.FACE_DETECT_MODEL,
-        this.state.input)
-        .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-          .catch(err => console.log(err));
+    // app.models
+    //   .predict(
+    //     Clarifai.FACE_DETECT_MODEL,
+    //     this.state.input)
+    //     .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
+    //       .catch(err => console.log(err));
       
       }
 
@@ -74,7 +77,7 @@ render () {
     <div className="App">
       <ParticlesBg 
         className='particles' 
-        params ={particlesOptions} 
+        // params ={particlesOptions} 
         type="cobweb" 
         bg={true} />
       <Navigation />     
@@ -84,6 +87,12 @@ render () {
         onInputChange={this.onInputChange} 
         onButtonSubmit={this.onButtonSubmit}  />      
       <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+
+      : (
+             route === 'signin'
+             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+            )
 
      
     </div>
